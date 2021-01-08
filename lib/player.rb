@@ -8,25 +8,22 @@ class Player
 
   attr_reader :name
 
-  def get_input(question_to_display, valid_characters = %w[Y N], length = 1, _feedback = nil)
+  # generic input validation
+  def get_input(question_to_display, valid_characters = %w[Y N], _feedback = nil)
     input = false
     loop do
-      puts question_to_display
+      print question_to_display
       input = gets.chomp.upcase
-      # subtracting sets leaves an empty if all eles in the first set exist in 2nd
-      break if input.length == length && (input.chars - valid_characters).empty?
+      break if valid_characters.include?(input)
 
       puts 'Invalid input.'
     end
     input
   end
 
-  def win(turns_elapsed)
-    puts "Congradulations! You won on turn #{turns_elapsed}!"
-  end
-
-  def lose(code)
-    puts "Game Over!\nThe code was #{code}."
+  # display generic win.los message based on boolean parameter
+  def win_or_lose(game_result)
+    puts game_result ? 'YOU WIN!' : 'YOU LOSE.'
   end
 
   # the player doesnt have anything to reset for this game so it is empty

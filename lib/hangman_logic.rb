@@ -11,7 +11,6 @@ class HangmanLogic
     @secret_word = choose_word
     @correct_letters = ('_' * @secret_word.length).chars
     @incorrect_letters = []
-    puts 'Welcome to Hangman!'
   end
 
   # game loop
@@ -33,6 +32,7 @@ class HangmanLogic
 
   # ask user if they want to use save file, then check if the save file exists.
   def self.load_game?(player)
+    puts 'Welcome to Hangman!'
     load = player.get_input('Would you like to load your save file? (Y/N) ', %w[Y N])
     if load == 'Y'
       # check if file exists
